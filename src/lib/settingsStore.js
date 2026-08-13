@@ -10,40 +10,40 @@
  */
 
 const KEYS = {
-  openaiApiKey: 'redline:openaiApiKey',
-  openaiModel: 'redline:openaiModel',
+    openaiApiKey: 'redline:openaiApiKey',
+    openaiModel: 'redline:openaiModel',
 };
 
 export function getOpenAIKey() {
-  try {
-    return localStorage.getItem(KEYS.openaiApiKey) || '';
-  } catch (e) {
-    return '';
-  }
+    try {
+        return localStorage.getItem(KEYS.openaiApiKey) || '';
+    } catch (e) {
+        return '';
+    }
 }
 
 export function setOpenAIKey(key) {
-  try {
-    if (key) localStorage.setItem(KEYS.openaiApiKey, key);
-    else localStorage.removeItem(KEYS.openaiApiKey);
-  } catch (e) {
-    // ignore (e.g. storage disabled)
-  }
+    try {
+        if (key) localStorage.setItem(KEYS.openaiApiKey, key);
+        else localStorage.removeItem(KEYS.openaiApiKey);
+    } catch (e) {
+        // ignore (e.g. storage disabled)
+    }
 }
 
 export function getOpenAIModel() {
-  try {
-    return localStorage.getItem(KEYS.openaiModel) || '';
-  } catch (e) {
-    return '';
-  }
+    try {
+        return localStorage.getItem(KEYS.openaiModel) || '';
+    } catch (e) {
+        return '';
+    }
 }
 
 export function setOpenAIModel(model) {
-  try {
-    if (model) localStorage.setItem(KEYS.openaiModel, model);
-    else localStorage.removeItem(KEYS.openaiModel);
-  } catch (e) {
-    // ignore
-  }
+    try {
+        if (model) localStorage.setItem(KEYS.openaiModel, model);
+        else localStorage.removeItem(KEYS.openaiModel);
+    } catch (e) {
+        // ignore
+    }
 }

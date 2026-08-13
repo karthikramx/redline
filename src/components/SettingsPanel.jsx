@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { getOpenAIKey, getOpenAIModel, setOpenAIKey, setOpenAIModel } from '../lib/settingsStore';
+import React, { useEffect, useState } from "react";
+import {
+  getOpenAIKey,
+  getOpenAIModel,
+  setOpenAIKey,
+  setOpenAIModel,
+} from "../lib/settingsStore";
 
 /**
  * API key entry, stored only in this browser's localStorage — never written
  * to the codebase, .env, or any build output. Cleared with one click.
  */
 export default function SettingsPanel({ open, onClose }) {
-  const [keyInput, setKeyInput] = useState('');
-  const [modelInput, setModelInput] = useState('');
+  const [keyInput, setKeyInput] = useState("");
+  const [modelInput, setModelInput] = useState("");
   const [reveal, setReveal] = useState(false);
   const [savedAt, setSavedAt] = useState(null);
 
@@ -30,10 +35,10 @@ export default function SettingsPanel({ open, onClose }) {
   };
 
   const handleClear = () => {
-    setOpenAIKey('');
-    setOpenAIModel('');
-    setKeyInput('');
-    setModelInput('');
+    setOpenAIKey("");
+    setOpenAIModel("");
+    setKeyInput("");
+    setModelInput("");
     setSavedAt(Date.now());
   };
 
@@ -42,21 +47,25 @@ export default function SettingsPanel({ open, onClose }) {
       <div className="settings-panel" onClick={(e) => e.stopPropagation()}>
         <div className="settings-header">
           <div className="settings-title">OpenAI API Key</div>
-          <button className="btn btn-ghost btn-sm" onClick={onClose}>Close</button>
+          <button className="btn btn-ghost btn-sm" onClick={onClose}>
+            Close
+          </button>
         </div>
 
         <p className="settings-desc">
-          Stored only in this browser's local storage — never sent to our servers,
-          never committed to the codebase. It's used to call OpenAI directly from
-          your browser, so it stays only on this device.
+          Stored only in this browser's local storage — never sent to our
+          servers, never committed to the codebase. It's used to call OpenAI
+          directly from your browser, so it stays only on this device.
         </p>
 
-        <label className="settings-label" htmlFor="openai-key">API key</label>
+        <label className="settings-label" htmlFor="openai-key">
+          API key
+        </label>
         <div className="settings-input-row">
           <input
             id="openai-key"
             className="input"
-            type={reveal ? 'text' : 'password'}
+            type={reveal ? "text" : "password"}
             placeholder="sk-..."
             value={keyInput}
             onChange={(e) => setKeyInput(e.target.value)}
@@ -64,11 +73,13 @@ export default function SettingsPanel({ open, onClose }) {
             spellCheck={false}
           />
           <button className="btn btn-sm" onClick={() => setReveal((r) => !r)}>
-            {reveal ? 'Hide' : 'Show'}
+            {reveal ? "Hide" : "Show"}
           </button>
         </div>
 
-        <label className="settings-label" htmlFor="openai-model">Model (optional)</label>
+        <label className="settings-label" htmlFor="openai-model">
+          Model (optional)
+        </label>
         <input
           id="openai-model"
           className="input"
@@ -81,7 +92,11 @@ export default function SettingsPanel({ open, onClose }) {
         />
 
         <div className="settings-actions">
-          <button className="btn btn-ghost btn-sm" onClick={handleClear} disabled={!hasStoredKey && !keyInput}>
+          <button
+            className="btn btn-ghost btn-sm"
+            onClick={handleClear}
+            disabled={!hasStoredKey && !keyInput}
+          >
             Clear
           </button>
           <button className="btn btn-primary btn-sm" onClick={handleSave}>
@@ -89,7 +104,11 @@ export default function SettingsPanel({ open, onClose }) {
           </button>
         </div>
 
-        {savedAt && <div className="hint" style={{ marginTop: 8 }}>Saved to this browser.</div>}
+        {savedAt && (
+          <div className="hint" style={{ marginTop: 8 }}>
+            Saved to this browser.
+          </div>
+        )}
       </div>
     </div>
   );
